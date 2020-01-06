@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Small Business - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/small-business.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script>
+    $.ajax({
+      url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBf4nvH7UvS2K8EhBC0mrJL0CkGCTmpi3U&q=연극 옥탑방고양이&type=video',
+      type: 'get',
+      data: {},
+      success: function(result){
+        var items = result.items;
+  
+        var code = "";
+  
+        for(var i = 0; i < items.length; i++){
+          videoId = items[i].id.videoId;
+          title = items[i].snippet.title;
+          code += '<div class="col-md-4 mb-5"><div class="card h-100"><div class="card-body">'
+          code += '<iframe src="http://www.youtube.com/embed/' + videoId +'" allowfullscreen = "true"></iframe>'
+          code += '<p>' + title + '</p>'
+          code += '</div></div></div>'
+          document.querySelector("#youtube").innerHTML = code;
+        }
+      }
+    })
+  </script>
+
+
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">우리 사이트 이름</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">상세보기
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">연극</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">뮤지컬</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">처음화면으로</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+      <div class="col-lg-4 text-center">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="http://ticketimage.interpark.com/Play/image/large/19/19018396_p.gif" alt="">
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-8">
+        <h1 class="font-weight-light">옥탑방 고양이 - 서울</h1>
+        <p>13세 이상 | 100분</p>
+        <p>기간 2010.04.06 ~ 오픈런</p>
+        <p>틴틴홀</p>
+        <a class="btn btn-primary" href="http://ticket.interpark.com/search/ticket.asp?search=%uC625%uD0D1%uBC29%uACE0%uC591%uC774" target="_blank">예약하기</a>
+      </div>
+      <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Content Row -->
+    <div class="row" id="youtube">
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+</body>
+
+</html>
