@@ -10,10 +10,10 @@
   <title>Modern Business - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../css/modern-business.css" rel="stylesheet">
+  <link href="css/modern-business.css" rel="stylesheet">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -62,7 +62,39 @@ body {font-family: Arial;}
 <body>
 
   <!-- Navigation -->
-  <nav th:replace = "common/nav">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">연극</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">뮤지컬</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">공연 에티켓</a>
+          </li>
+          <li th:if="${session.user_info} == null">
+			<a class="nav-link" href="/login">로그인</a>
+		  </li>
+          <li class="nav-item dropdown" th:if="${session.user_info} != null">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               [[${session.user_info.email} + '님 회원정보']]
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <a class="dropdown-item" href="portfolio-1-col.html">내정보 보기</a>
+              <a class="dropdown-item" href="portfolio-2-col.html">찜한공연</a>
+              <a class="dropdown-item" href="/signout">로그아웃</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
   <header>
@@ -74,11 +106,10 @@ body {font-family: Arial;}
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('https://post-phinf.pstatic.net/MjAxOTEwMjhfMTM3/MDAxNTcyMjUwNzYxOTc4.AsnEcM4o_SwmQRtUos4Yz9k9wPLIDtX1vAPpIH2Bc9Ag.Hok6PibOL7Sp1UQPu7fowtCSbVe4Go3LdGWwBhNVBBMg.JPEG/133275_143884_115.jpg?type=w1200')">
+        <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
           <div class="carousel-caption d-none d-md-block">
             <h3>이달의 연극</h3>
-            <p>
-            공연정보 보러가기</p>
+            <p>공연정보 보러가기</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
@@ -285,8 +316,8 @@ function openCity(evt, cityName) {
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

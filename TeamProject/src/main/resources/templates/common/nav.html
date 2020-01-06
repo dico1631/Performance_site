@@ -15,13 +15,17 @@
           <li class="nav-item">
             <a class="nav-link" href="contact.html">공연 에티켓</a>
           </li>
-          <li class="nav-item dropdown">
+          <li th:if="${session.user_info} == null">
+			<a class="nav-link" href="/login">로그인</a>
+		  </li>
+          <li class="nav-item dropdown" th:if="${session.user_info} != null">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              회원정보
+               [[${session.user_info.email} + '님 회원정보']]
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
               <a class="dropdown-item" href="portfolio-1-col.html">내정보 보기</a>
               <a class="dropdown-item" href="portfolio-2-col.html">찜한공연</a>
+              <a class="dropdown-item" href="/signout">로그아웃</a>
               <!-- <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
               <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
               <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a> -->

@@ -31,6 +31,12 @@ public class HomeController {
 		}
 		return "redirect:/main";
 	}
+	
+	@GetMapping("/signout")
+	public String signout() {
+	session.invalidate();
+	return "redirect:/main";
+	}
 
 	@RequestMapping("/main")
 	public String main() {
@@ -58,7 +64,7 @@ public class HomeController {
 	@PostMapping("/register")
 	public String registerPost(@ModelAttribute User user) {
 		userRepository.save(user);
-		return "redirect:/main";
+		return "redirect:/login";
 	}
 
 	@RequestMapping("/forgotpassword")
