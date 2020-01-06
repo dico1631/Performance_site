@@ -62,50 +62,7 @@ body {font-family: Arial;}
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">연극</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="services.html">뮤지컬</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">공연 에티켓</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              회원정보
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="portfolio-1-col.html">내정보 보기</a>
-              <a class="dropdown-item" href="portfolio-2-col.html">찜한공연</a>
-              <!-- <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a> -->
-            </div>
-          </li>
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Other Pages
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-              <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-              <a class="dropdown-item" href="faq.html">FAQ</a>
-              <a class="dropdown-item" href="404.html">404</a>
-              <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-            </div>
-          </li> -->
-        </ul>
-      </div>
-    </div>
+  <nav th:replace = "common/nav">
   </nav>
 
   <header>
@@ -117,10 +74,11 @@ body {font-family: Arial;}
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
+        <div class="carousel-item active" style="background-image: url('https://post-phinf.pstatic.net/MjAxOTEwMjhfMTM3/MDAxNTcyMjUwNzYxOTc4.AsnEcM4o_SwmQRtUos4Yz9k9wPLIDtX1vAPpIH2Bc9Ag.Hok6PibOL7Sp1UQPu7fowtCSbVe4Go3LdGWwBhNVBBMg.JPEG/133275_143884_115.jpg?type=w1200')">
           <div class="carousel-caption d-none d-md-block">
             <h3>이달의 연극</h3>
-            <p>공연정보 보러가기</p>
+            <p>
+            공연정보 보러가기</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
