@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>TeamProject</name>
+<<<<<<< HEAD
 	<comment>Project TeamProject created by Buildship.</comment>
+=======
+	<comment></comment>
+>>>>>>> ac76ba20007c92e589d591c8be73328db1b4df7f
 	<projects>
 	</projects>
 	<buildSpec>
