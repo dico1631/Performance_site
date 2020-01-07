@@ -111,28 +111,14 @@ body {font-family: Arial;}
     <h1 class="my-4">내게 맞는 공연정보</h1>
 <!-- 탭 들어갈 자리 : 네이버에서 가져오기-->
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')">스릴러</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">로맨스</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">드라마</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">드라마</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">드라마</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">드라마</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">드라마</button>
-</div>
-
-<div id="London" class="tabcontent">
-  <h3>London</h3>
-  <p>London is the capital city of England.</p>
-</div>
-
-<div id="Paris" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p> 
-</div>
-
-<div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
+  <button class="tablinks" onclick="openCity(event, 'tabs')">전체</button>
+  <button class="tablinks" onclick="openCity(event, 'tabs')">로맨스</button>
+  <button class="tablinks" onclick="openCity(event, 'tabs')">코미디</button>
+  <button class="tablinks" onclick="openCity(event, 'tabs')">공포</button>
+  <button class="tablinks" onclick="openCity(event, 'tabs')">드라마</button>
+  <button class="tablinks" onclick="openCity(event, 'tabs')">판타지</button>
+  <button class="tablinks" onclick="openCity(event, 'tabs')">시대/역사</button>
+  <button class="tablinks" onclick="openCity(event, 'tabs')">추리스릴러</button>
 </div>
 
 <script>
@@ -154,6 +140,7 @@ function openCity(evt, cityName) {
 
     <!-- Portfolio Section -->
     <!-- <h2>내게 맞는 공연정보</h2> -->
+    <div id="tabs" class="tabcontent">
     <div class="row">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">  
@@ -233,46 +220,12 @@ function openCity(evt, cityName) {
           </div>
         </div>
       </div>
+      </div>
    
-    <!-- /.row -->
-
-    <!-- Features Section -->
-    <div class="row">
-      <div class="col-lg-6">
-        <h2>Modern Business Features</h2>
-        <p>The Modern Business template by Start Bootstrap includes:</p>
-        <ul>
-          <li>
-            <strong>Bootstrap v4</strong>
-          </li>
-          <li>jQuery</li>
-          <li>Font Awesome</li>
-          <li>Working contact form with validation</li>
-          <li>Unstyled page elements for easy customization</li>
-        </ul>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
-      </div>
-      <div class="col-lg-6">
-        <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-      </div>
-    </div>
-  </div>
     <!-- /.row -->
 
     <hr>
 
-    <!-- Call to Action Section -->
-    <div class="row mb-4">
-      <div class="col-md-8">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
-      </div>
-      <div class="col-md-4">
-        <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
-      </div>
-    </div>
-
-  </div>
-  <!-- /.container -->
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
