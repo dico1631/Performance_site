@@ -29,7 +29,7 @@ public class HomeController {
 		if (dbUser != null) {
 			session.setAttribute("user_info", dbUser);
 		}
-		return "redirect:/main";
+		return "redirect:/stage";
 	}
 	
 	@GetMapping("/signout")
@@ -38,11 +38,16 @@ public class HomeController {
 	return "redirect:/main";
 	}
 
-	@RequestMapping("/main")
-	public String main() {
-		return "main";
+	@RequestMapping("/stage")
+	public String stage() {
+		return "stage";
 	}
 
+	@RequestMapping("/musical")
+	public String main() {
+		return "musical";
+	}
+	
 	@RequestMapping("/map")
 	public String map() {
 		return "map";
