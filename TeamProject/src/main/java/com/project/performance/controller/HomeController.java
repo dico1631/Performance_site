@@ -1,5 +1,7 @@
 package com.project.performance.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.performance.model.ContentInfo;
 import com.project.performance.model.User;
+import com.project.performance.repository.ContentRepository;
 import com.project.performance.repository.UserRepository;
 
 @Controller
@@ -31,6 +35,16 @@ public class HomeController {
 		}
 		return "redirect:/stage";
 	}
+	
+	  @Autowired ContentRepository contentRepository;
+	  
+	  @GetMapping("/content") public List<ContentInfo> content(){ List<ContentInfo>
+	  content = contentRepository.findAll(); return content; }
+	  
+	  @PostMapping("/content") public String contentPost(@ModelAttribute
+	  ContentInfo content) { contentRepository.save(content);
+	  
+	  return "redirect:/content";  }
 	
 	@GetMapping("/signout")
 	public String signout() {
