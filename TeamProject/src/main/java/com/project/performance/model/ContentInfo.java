@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
-@Entity
+@Entity(name = "content_info")
 @Data
 public class ContentInfo {
 	@Id

@@ -13,7 +13,7 @@ import com.project.performance.model.ContentInfo;
 public interface ContentRepository extends JpaRepository<ContentInfo, Long>{
 //title, category로 데이터 존재하는지 확인 
 	
-	@Query("select count(*) from ContentInfo con where con.title=:title and con.category=:category")
+	@Query("select count(*) from content_info con where con.title=:title and con.category=:category")
 	int existcount(@Param("title") String title,@Param("category") String category);
 	
 //신규등록 
@@ -23,21 +23,15 @@ public interface ContentRepository extends JpaRepository<ContentInfo, Long>{
 	
 	@Transactional
 	@Modifying
-	@Query("update ContentInfo set period=:period,thumb=:thumb,genre=concat(genre, ',', :genre) where title=:title and category=:category ")
+	@Query("update content_info set period=:period,thumb=:thumb,genre=concat(genre, ',', :genre) where title=:title and category=:category ")
 	void updatecontent(@Param("period") String period,@Param("thumb") String thumb,@Param("genre") String genre,@Param("title") String title,@Param("category") String category);
 	
-//카테고리 클릭 - 전체 리스트를 리턴
-	@Transactional
-	@Modifying
-	@Query("select id,title,location,period,thumb,category,genre from ContentInfo con where con.category=:category ")
-	List<ContentInfo> selectcontent2(@Param("category") String category);
 	
-	
-//장르클릭 - 장르, 카테고리로 조회하여 리턴한다 
-	@Transactional
-	@Modifying
-	@Query("select id,title,location,period,thumb,category,genre from ContentInfo con where con.genre like '%:genre%' and con.category=:category ")
-	List<ContentInfo> selectcontent(@Param("genre") String genre,@Param("category") String category);
+// 장르, 카테고리로 조회하여 리턴한다 
+//	@Transactional
+//	@Modifying
+//	@Query("select id,title,location,period,thumb,category,genre from content_info con where con.genre like '%:genre%' and con.category=:category ")
+//	List<ContentInfo> selectcontent(@Param("genre") String genre,@Param("category") String category);
 
-
+	List<ContentInfo> findAllByGenreContainingAndCategory(String genre, String category);
 }

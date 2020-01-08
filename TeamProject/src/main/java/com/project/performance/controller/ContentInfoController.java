@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.project.performance.model.ContentInfo;
 import com.project.performance.repository.ContentRepository;
@@ -22,6 +23,11 @@ public class ContentInfoController {
 	
 	@GetMapping("/crawling")
 	public void Crawling() throws IOException {
+	}	
+	
+	@PostMapping("/crawling")
+	public void CrawlingPost() throws IOException {
+	//public String CrawlingPost() throws IOException {
 		//genre 삽입, 전체 : genre만 삭제 
 	      List <String> genre = new ArrayList<String>();
 	      genre.add(""); // 전체
@@ -147,6 +153,6 @@ public class ContentInfoController {
 	            	 contentRepository.updatecontent(period, thumb, sGenre, title, category);
 	             }	             
 	         }
-	      
+	      //return "redirect:/stage";
 	}
 }

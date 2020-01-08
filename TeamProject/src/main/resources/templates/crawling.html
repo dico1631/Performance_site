@@ -4,13 +4,21 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
+
 <body>
-<script>
-	$(".crawlbtn").click(function() {
-		location="/crawling"
-		return false;
-	});
+<script language="javascript">
+   function btnClick(){
+      document.getElementById('frm').submit();
+   }
 </script>
-<input type="button" id="crawlbtn" value="crawling"/>
+
+<body>
+<form id="frm" action="/crawling" method="post">
+   <input type="button" id="crawlbtn" value="crawling" onClick="btnClick();"/>   
+</form>
+
 </body>
 </html>
+
+
+
