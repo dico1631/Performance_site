@@ -110,16 +110,20 @@ public class HomeController {
 	}
 
 	@GetMapping("/detail")
-	public String detail(Model model, @RequestParam("title") String title) throws UnsupportedEncodingException {
-
-		//String utfTitle = new String(title.getBytes("euc-kr"), "utf-8");
+	public String detail(
+			Model model, 
+			@RequestParam("title") String title,
+			@RequestParam("period") String period,
+			@RequestParam("location") String location,
+			@RequestParam("category") String category,
+			@RequestParam("thumb") String thumb
+			) throws UnsupportedEncodingException {
 		
-		System.out.println(title);
-		System.out.println(new String(title.getBytes(), "utf-8"));
-		System.out.println(new String(title.getBytes(), "euc-kr"));
-		System.out.println("euc-kr -> utf-8: " + new String(title.getBytes("euc-kr"), "utf-8"));
-		
-		model.addAttribute("utfTitle", title);
+		model.addAttribute("title", title);
+		model.addAttribute("period", period);
+		model.addAttribute("location", location);
+		model.addAttribute("youtube", category + title);
+		model.addAttribute("thumb", thumb);
 		return "detail";
 	}
 

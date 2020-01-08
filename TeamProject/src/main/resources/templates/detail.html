@@ -17,10 +17,10 @@
   <!-- Custom styles for this template -->
  
   <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script th:inline="javascript">
+ <script th:inline="javascript">
   /*<![CDATA[*/
     $.ajax({
-      url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBf4nvH7UvS2K8EhBC0mrJL0CkGCTmpi3U&q=' + /*[[${utfTitle}]]*/ + '&type=video',
+      url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBf4nvH7UvS2K8EhBC0mrJL0CkGCTmpi3U&q=' + /*[[${youtube}]]*/ + '&type=video',
       type: 'get',
       data: {},
       success: function(result){
@@ -56,15 +56,14 @@
     <!-- Heading Row -->
     <div class="row align-items-center my-5">
       <div class="col-lg-4 text-center">
-        <img class="img-fluid rounded mb-4 mb-lg-0" src="http://ticketimage.interpark.com/Play/image/large/19/19018396_p.gif" alt="">
+        <img class="img-fluid rounded mb-4 mb-lg-0" th:src="@{${thumb}}" alt="">
       </div>
       <!-- /.col-lg-8 -->
       <div class="col-lg-8">
-        <h1 class="font-weight-light" th:text="${utfTitle}"></h1>
-        <p>13세 이상 | 100분</p>
-        <p>기간 2010.04.06 ~ 오픈런</p>
-        <p>틴틴홀</p>
-        <a id="btn" class="btn btn-primary" th:href="@{http://ticket.interpark.com/search/ticket.asp(search=${utfTitle})}" target="_blank">예약하기</a>
+        <h1 class="font-weight-light" th:text="${title}"></h1>
+        <p th:text="${period}"></p>
+        <p th:text="${location}"></p>
+        <a id="btn" class="btn btn-primary" th:href="@{http://ticket.interpark.com/search/ticket.asp(search=(${title}))}" target="_blank">예약하기</a>
       </div>
       <!-- /.col-md-4 -->
     </div>
