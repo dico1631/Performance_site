@@ -120,7 +120,7 @@ body {
 		<h1 class="my-4">내게 맞는 공연정보</h1>
 		<!-- 탭 들어갈 자리 : 네이버에서 가져오기-->
 		<div class="tab">
-			<button class="tablinks" onclick="openCity(event, 'tabs')">전체</button>
+			<button class="tablinks active" onclick="openCity(event, 'tabs')">전체</button>
 			<button class="tablinks" onclick="openCity(event, 'tabs')">로맨스</button>
 			<button class="tablinks" onclick="openCity(event, 'tabs')">코미디</button>
 			<button class="tablinks" onclick="openCity(event, 'tabs')">공포</button>
@@ -145,7 +145,7 @@ body {
 					<div class="card-body">
 						<h4 class="card-title">
 							<!-- 클릭 시 상세페이지 이동 -->
-							<a href="#">[[${con.title}]]</a> <a href="#" class="btn btn-primary">찜하기</a>
+							<a th:href="@{/detail(title=${con.title})}">[[${con.title}]]</a> <a href="#" class="btn btn-primary">찜하기</a>
 						</h4>
 						<p class="card-text">[[${con.period}]]</p>
 					</div>
@@ -157,7 +157,6 @@ body {
 		<!-- /.row -->
 	</div>
 	<hr>
-
 
 	<!-- Footer -->
 	<footer th:replace = "common/footer"></footer>
@@ -182,4 +181,6 @@ function openCity(evt, cityName) {
   evt.currentTarget.className += " active";
 }
 </script>
+
+<script>openCity(event, 'tabs')</script>
 </html>

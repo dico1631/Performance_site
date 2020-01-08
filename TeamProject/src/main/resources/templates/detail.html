@@ -17,9 +17,10 @@
   <!-- Custom styles for this template -->
  
   <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script>
+  <script th:inline="javascript">
+  /*<![CDATA[*/
     $.ajax({
-      url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBf4nvH7UvS2K8EhBC0mrJL0CkGCTmpi3U&q=연극 옥탑방고양이&type=video',
+      url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBf4nvH7UvS2K8EhBC0mrJL0CkGCTmpi3U&q=' + /*[[${utfTitle}]]*/ + '&type=video',
       type: 'get',
       data: {},
       success: function(result){
@@ -38,6 +39,7 @@
         }
       }
     })
+    /*]]>*/
   </script>
 
 
@@ -58,11 +60,11 @@
       </div>
       <!-- /.col-lg-8 -->
       <div class="col-lg-8">
-        <h1 class="font-weight-light">옥탑방 고양이 - 서울</h1>
+        <h1 class="font-weight-light" th:text="${utfTitle}"></h1>
         <p>13세 이상 | 100분</p>
         <p>기간 2010.04.06 ~ 오픈런</p>
         <p>틴틴홀</p>
-        <a class="btn btn-primary" href="http://ticket.interpark.com/search/ticket.asp?search=%uC625%uD0D1%uBC29%uACE0%uC591%uC774" target="_blank">예약하기</a>
+        <a id="btn" class="btn btn-primary" th:href="@{http://ticket.interpark.com/search/ticket.asp(search=${utfTitle})}" target="_blank">예약하기</a>
       </div>
       <!-- /.col-md-4 -->
     </div>

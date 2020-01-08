@@ -1,6 +1,7 @@
 package com.project.performance.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -108,10 +109,19 @@ public class HomeController {
 		return "forgotpassword";
 	}
 
-	 @GetMapping("/detail")
-	   public String detail(@RequestParam("title") String title) {
-	      return "detail";
-	   }
+	@GetMapping("/detail")
+	public String detail(Model model, @RequestParam("title") String title) throws UnsupportedEncodingException {
+
+		//String utfTitle = new String(title.getBytes("euc-kr"), "utf-8");
+		
+		System.out.println(title);
+		System.out.println(new String(title.getBytes(), "utf-8"));
+		System.out.println(new String(title.getBytes(), "euc-kr"));
+		System.out.println("euc-kr -> utf-8: " + new String(title.getBytes("euc-kr"), "utf-8"));
+		
+		model.addAttribute("utfTitle", title);
+		return "detail";
+	}
 
 	@RequestMapping("/bigdoor")
 	public String bigdoor() {
