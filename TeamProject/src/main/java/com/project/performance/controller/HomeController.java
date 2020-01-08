@@ -1,15 +1,18 @@
 package com.project.performance.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.performance.model.ContentInfo;
 import com.project.performance.model.User;
@@ -35,33 +38,47 @@ public class HomeController {
 		}
 		return "redirect:/stage";
 	}
-	
-	  @Autowired ContentRepository contentRepository;
-	  
-	  @GetMapping("/content") public List<ContentInfo> content(){ List<ContentInfo>
-	  content = contentRepository.findAll(); return content; }
-	  
-	  @PostMapping("/content") public String contentPost(@ModelAttribute
-	  ContentInfo content) { contentRepository.save(content);
-	  
-	  return "redirect:/content";  }
-	
-	@GetMapping("/signout")
-	public String signout() {
-	session.invalidate();
-	return "redirect:/main";
+
+	@Autowired
+	ContentRepository contentRepository;
+
+	@GetMapping("/content")
+	public List<ContentInfo> content() {
+		List<ContentInfo> content = contentRepository.findAll();
+		return content;
 	}
 
-	@RequestMapping("/stage")
-	public String stage() {
+	@PostMapping("/content")
+	public String contentPost(@ModelAttribute ContentInfo content) {
+		contentRepository.save(content);
+
+		return "redirect:/content";
+	}
+
+	@GetMapping("/signout")
+	public String signout() {
+		session.invalidate();
+		return "redirect:/main";
+	}
+
+//	@RequestMapping¿¡¼­ º¯°æ 
+	@GetMapping("/stage")
+	public String stage(Model model) throws IOException {
+//		List<ContentInfo> list = contentRepository.selectcontent("", "¿¬±Ø");
+		List<ContentInfo> list = contentRepository.findAllByGenreContainingAndCategory("", "¿¬±Ø");
+		System.out.println(list);
+		model.addAttribute("list", list);
 		return "stage";
 	}
 
 	@RequestMapping("/musical")
-	public String main() {
+	public String main(Model model) {
+		List<ContentInfo> list2 = contentRepository.findAllByGenreContainingAndCategory("", "¹ÂÁöÄÃ");
+		System.out.println(list2);
+		model.addAttribute("list2", list2);
 		return "musical";
 	}
-	
+
 	@RequestMapping("/map")
 	public String map() {
 		return "map";
@@ -91,10 +108,10 @@ public class HomeController {
 		return "forgotpassword";
 	}
 
-	@RequestMapping("/detail")
-	public String detail() {
-		return "detail";
-	}
+	 @GetMapping("/detail")
+	   public String detail(@RequestParam("title") String title) {
+	      return "detail";
+	   }
 
 	@RequestMapping("/bigdoor")
 	public String bigdoor() {
