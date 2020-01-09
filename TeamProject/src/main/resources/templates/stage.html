@@ -207,17 +207,21 @@ function goPage(genre){
 <script>openCity(event, 'tabs','')</script>
 <script>
 	$(".mylist").click(function() {
-		alert("찜했습니다.");
 		var idx = $(this).index(".mylist");
 		console.log(idx);
-		$('form').eq(idx).submit();
  		
 		$.ajax({
 			url: 'test',
 			type: 'post',
 			data: $('form').eq(idx).serialize(),
 			success: function(result) {
-				
+				if(result == 1) {
+					// 찜하기 진행
+					alert('찜 했습니다!');
+				} else {
+					alert('로그인 해주세요.');
+ 					location = "/login";
+				}
 			}
 		})
 		return false;

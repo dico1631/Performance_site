@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.performance.model.ContentInfo;
 import com.project.performance.model.Scrap;
@@ -153,12 +154,16 @@ public class HomeController {
 	ScrapRepository scrapRepository;
 	
 	@PostMapping("/test")
+	@ResponseBody
 	public String testPost(@ModelAttribute Scrap scrap, HttpSession session) {
 		User user = (User) session.getAttribute("user_info");
+		if(user == null) {
+			return "0";
+		}
 		String email = user.getEmail();
 		scrap.setEmail(email);
 		scrapRepository.save(scrap);
-		return "redirect:/stage";
+		return "1";
 	}
 	
 	@GetMapping("/mylist")

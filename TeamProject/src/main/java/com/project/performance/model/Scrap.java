@@ -13,6 +13,7 @@ public class Scrap {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	private long contentid;
 	private String email;
 	private String title;
 	private String location;
