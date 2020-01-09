@@ -42,7 +42,7 @@
             <h2 class="card-title">[[${con.title}]]</h2>
             <p class="card-text">[[${con.period}]]</p>
             <p class="card-text">[[${con.location}]]</p>
-            <a id="btn" class="btn btn-primary" th:href="@{http://ticket.interpark.com/search/ticket.asp(search=(${title}))}" target="_blank">예약하기</a>
+            <a id="btn" class="btn btn-primary" th:href="@{http://ticket.interpark.com/search/ticket.asp(search=(${con.interparkTit}))}" target="_blank"  style = background-color:#6c757d;border-color:#6c757d;>예약하기</a>
           </div>
         </div>
       </div>

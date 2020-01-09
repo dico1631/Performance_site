@@ -63,7 +63,7 @@
         <h1 class="font-weight-light" th:text="${title}"></h1>
         <p th:text="${period}"></p>
         <p th:text="${location}"></p>
-        <a id="btn" class="btn btn-primary" th:href="@{http://ticket.interpark.com/search/ticket.asp(search=(${title}))}" target="_blank" style = background-color:#6c757d;border-color:#6c757d;>예약하기</a>
+        <a id="btn" class="btn btn-primary" th:href="@{http://ticket.interpark.com/search/ticket.asp(search=(${interparkTit}))}" target="_blank" style = background-color:#6c757d;border-color:#6c757d;>예약하기</a>
       </div>
       <!-- /.col-md-4 -->
     </div>

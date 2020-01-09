@@ -28,27 +28,27 @@ public class ContentInfoController {
 	@PostMapping("/crawling")
 	public void CrawlingPost() throws IOException {
 	//public String CrawlingPost() throws IOException {
-		//genre »ğÀÔ, ÀüÃ¼ : genre¸¸ »èÁ¦ 
+		//genre ì‚½ì…, ì „ì²´ : genreë§Œ ì‚­ì œ 
 	      List <String> genre = new ArrayList<String>();
-	      genre.add(""); // ÀüÃ¼
-	      genre.add("·Î¸Ç½º");
-	      genre.add("ÄÚ¹Ìµğ");
-	      genre.add("°øÆ÷");
-	      genre.add("µå¶ó¸¶");
-	      genre.add("ÆÇÅ¸Áö");
-	      genre.add("½Ã´ë/¿ª»ç");
-	      genre.add("Ãß¸®½º¸±·¯");
+	      genre.add(""); // ì „ì²´
+	      genre.add("ë¡œë§¨ìŠ¤");
+	      genre.add("ì½”ë¯¸ë””");
+	      genre.add("ê³µí¬");
+	      genre.add("ë“œë¼ë§ˆ");
+	      genre.add("íŒíƒ€ì§€");
+	      genre.add("ì‹œëŒ€/ì—­ì‚¬");
+	      genre.add("ì¶”ë¦¬ìŠ¤ë¦´ëŸ¬");
 	      
-	      //today »ğÀÔ 
+	      //today ì‚½ì… 
 	      Calendar cal = Calendar.getInstance();
 	      int month = cal.get ( cal.MONTH ) + 1 ;
 	      int date = cal.get ( cal.DATE ) ;
-	      String today = String.valueOf(month)+"¿ù"+String.valueOf(date)+"ÀÏ";
-	      //Àå¸£ 7°³ 
+	      String today = String.valueOf(month)+"ì›”"+String.valueOf(date)+"ì¼";
+	      //ì¥ë¥´ 7ê°œ 
 	      
 	      List<String> categoryList = new ArrayList<String>();
-	      categoryList.add("¿¬±Ø");
-	      categoryList.add("¹ÂÁöÄÃ");
+	      categoryList.add("ì—°ê·¹");
+	      categoryList.add("ë®¤ì§€ì»¬");
 	      
 	      List<String> sThumbList = new ArrayList<String>();
 	      List<String> sLocationList = new ArrayList<String>();
@@ -58,12 +58,12 @@ public class ContentInfoController {
 	      List<String> sGenreList = new ArrayList<String>();
 	      
 	      
-	   //1¿ù 6ÀÏÀÇ ¿¬±Ø ÀüÃ¼ µ¥ÀÌÅÍ Áß 1ÆäÀÌÁö(8°³ ³»¿ë) 
+	   //1ì›” 6ì¼ì˜ ì—°ê·¹ ì „ì²´ ë°ì´í„° ì¤‘ 1í˜ì´ì§€(8ê°œ ë‚´ìš©) 
 	      for(int aa=0;aa<categoryList.size();aa++){
 	         for(int u=0;u<genre.size();u++){
 	            for(int n=1;n<180;n=n+8){
-	               String url = String.format("https://m.search.naver.com/p/csearch/content/qapirender.nhn?key=PerformListAPI&where=nexearch&pkid=269&_callback=&q=%s+%s+%s+°ø¿¬&so=&start=%d&_=1578287261525", today, categoryList.get(aa), genre.get(u), n);
-	               //String url = String.format("https://m.search.naver.com/p/csearch/content/qapirender.nhn?key=PerformListAPI&where=nexearch&pkid=269&_callback=&q=%s+¹ÂÁöÄÃ+%s+°ø¿¬&so=&start=%d&_=1578128229725", today, genre.get(u), n)
+	               String url = String.format("https://m.search.naver.com/p/csearch/content/qapirender.nhn?key=PerformListAPI&where=nexearch&pkid=269&_callback=&q=%s+%s+%s+ê³µì—°&so=&start=%d&_=1578287261525", today, categoryList.get(aa), genre.get(u), n);
+	               //String url = String.format("https://m.search.naver.com/p/csearch/content/qapirender.nhn?key=PerformListAPI&where=nexearch&pkid=269&_callback=&q=%s+ë®¤ì§€ì»¬+%s+ê³µì—°&so=&start=%d&_=1578128229725", today, genre.get(u), n)
 	            
 	               Document doc = Jsoup.connect(url).ignoreContentType(true).get();
 	               String clean = doc.toString().replaceAll("&quot;", "").replaceAll("\\\\", "").replaceAll("&lt;", "<").replaceAll("&gt;" , ">");;
@@ -77,18 +77,18 @@ public class ContentInfoController {
 	                  
 	                  
 	                  for(int j=0;j<contents.size();j++){
-	                     Elements thumblist = contents.get(j).select("div[class=list_thumb]"); // ÀÌ¹ÌÁö<img>
-	                        Elements titleList = contents.get(j).select("div[class=list_title]"); // ÀÌ¸§, Àå¼Ò(list_cate), period
-	                        Elements periodList = contents.get(j).select("span[class=period]"); // ±â°£ 
+	                     Elements thumblist = contents.get(j).select("div[class=list_thumb]"); // ì´ë¯¸ì§€<img>
+	                        Elements titleList = contents.get(j).select("div[class=list_title]"); // ì´ë¦„, ì¥ì†Œ(list_cate), period
+	                        Elements periodList = contents.get(j).select("span[class=period]"); // ê¸°ê°„ 
 	                        
-	                        //img °¡Á®¿À±â
+	                        //img ê°€ì ¸ì˜¤ê¸°
 	                        for (int jj=0;jj<thumblist.size();jj++){
 	                           String img = thumblist.get(jj).select("img").attr("src");
 	                           //System.out.println("img:::"+ img);
 	                           sThumbList.add(img);
 	                        }
 	                        
-	                        //ÀÌ¸§ °¡Á®¿À±â 
+	                        //ì´ë¦„ ê°€ì ¸ì˜¤ê¸° 
 	                        for(int k=0;k<titleList.size();k++){
 	                           
 	                           Elements locationinfos = titleList.get(k).select("a");
@@ -143,7 +143,7 @@ public class ContentInfoController {
 	             
 	             //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	             
-	             //ÀÔ·ÂÇÏ·Á´Â ÄÁÅÙÃ÷°¡ ÀÌ¹Ì ÀúÀåµÇ¾î ÀÖ´ÂÁö Ä«¿îÆ®¸¦ ±¸ÇÑ´Ù
+	             //ì…ë ¥í•˜ë ¤ëŠ” ì»¨í…ì¸ ê°€ ì´ë¯¸ ì €ì¥ë˜ì–´ ìˆëŠ”ì§€ ì¹´ìš´íŠ¸ë¥¼ êµ¬í•œë‹¤
 	             int existcount = contentRepository.existcount(title, category);
 	             
 	             //ContentInfo existcount = contentRepository.findByTitleAndCategory(title, category);

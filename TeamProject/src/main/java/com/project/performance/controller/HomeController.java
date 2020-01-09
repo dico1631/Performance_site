@@ -2,6 +2,7 @@ package com.project.performance.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,12 +72,12 @@ public class HomeController {
 	
 		String genre = req.getParameter("genre");
 		String category = req.getParameter("category");
-		if(category==null || category.equals("")) category = "¿¬±Ø";
+		if(category==null || category.equals("")) category = "ì—°ê·¹";
 		if(genre==null || genre.equals("")) genre = "";
 		List<ContentInfo> list = contentRepository.findAllByGenreContainingAndCategory(genre, category);
 		System.out.println(list);
-		if(genre==null || genre.equals("")) genre = "ÀüÃ¼";
-		// list, category, genre Àü´Þ 
+		if(genre==null || genre.equals("")) genre = "ì „ì²´";
+		// list, category, genre ì „ë‹¬
 		model.addAttribute("list" , list);
 		model.addAttribute("category" , category);
 		model.addAttribute("genre" , genre);
@@ -84,14 +85,6 @@ public class HomeController {
 		return "stage";
 	}
 	
-	//¹ÂÁöÄÃ.html »èÁ¦ 
-//	@RequestMapping("/musical")
-//	public String main(Model model) {
-//		List<ContentInfo> list2 = contentRepository.findAllByGenreContainingAndCategory("", "¹ÂÁöÄÃ");
-//		System.out.println(list2);
-//		model.addAttribute("list2", list2);
-//		return "musical";
-//	}
 
 	@RequestMapping("/map")
 	public String map() {
@@ -132,7 +125,17 @@ public class HomeController {
 			@RequestParam("thumb") String thumb
 			) throws UnsupportedEncodingException {
 		
+		
+		
+		
+		String result = "";
+		for(int i = 0; i < title.length(); i++) {
+			result += "%u" + Integer.toHexString(title.charAt(i) | 0x10000).substring(1);
+		}
+		String interparkTit = result;
+		
 		model.addAttribute("title", title);
+		model.addAttribute("interparkTit", interparkTit);
 		model.addAttribute("period", period);
 		model.addAttribute("location", location);
 		model.addAttribute("youtube", category + title);
@@ -160,6 +163,7 @@ public class HomeController {
 		if(user == null) {
 			return "0";
 		}
+		
 		String email = user.getEmail();
 		scrap.setEmail(email);
 		scrapRepository.save(scrap);
@@ -168,10 +172,33 @@ public class HomeController {
 	
 	@GetMapping("/mylist")
 	public String mylist(Model model, HttpSession session) throws IOException {
+		
+		
+		
 		User user = (User) session.getAttribute("user_info");
 		String email = user.getEmail();
 		List<Scrap> scraplist = scrapRepository.findAllByEmail(email);
+		for(int i = 0; i < scraplist.size(); i++) {
+			Scrap s = scraplist.get(i);
+			String title = s.getTitle();
+			String result = "";
+			for(int j = 0; j < title.length(); j++) {
+				result += "%u" + Integer.toHexString(title.charAt(j) | 0x10000).substring(1);
+			}
+			String interparkTit = result;
+			s.setInterparkTit(interparkTit);
+		}
+		
 		model.addAttribute("list", scraplist);
 		return "scrap";
 	}
 }
+
+
+
+
+
+
+
+
+

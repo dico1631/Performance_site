@@ -11,27 +11,20 @@ import org.springframework.transaction.annotation.Transactional;
 import com.project.performance.model.ContentInfo;
 
 public interface ContentRepository extends JpaRepository<ContentInfo, Long>{
-//title, category·Î µ¥ÀÌÅÍ Á¸ÀçÇÏ´ÂÁö È®ÀÎ 
+	//title, categoryë¡œ ë°ì´í„° ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸ 
 	
 	@Query("select count(*) from content_info con where con.title=:title and con.category=:category")
 	int existcount(@Param("title") String title,@Param("category") String category);
 	
-//½Å±Ôµî·Ï 
+	//ì‹ ê·œë“±ë¡ 
 	public ContentInfo save(ContentInfo contentInfo);
 	
-//ÄÁÅÙÃ÷ Áßº¹ ½Ã(title, category) genre Ãß°¡ÇÏ¿© ¾÷µ¥ÀÌÆ® 
+	//ì»¨í…ì¸  ì¤‘ë³µ ì‹œ(title, category) genre ì¶”ê°€í•˜ì—¬ ì—…ë°ì´íŠ¸
 	
 	@Transactional
 	@Modifying
 	@Query("update content_info set period=:period,thumb=:thumb,genre=concat(genre, ',', :genre) where title=:title and category=:category ")
 	void updatecontent(@Param("period") String period,@Param("thumb") String thumb,@Param("genre") String genre,@Param("title") String title,@Param("category") String category);
-	
-	
-// Àå¸£, Ä«Å×°í¸®·Î Á¶È¸ÇÏ¿© ¸®ÅÏÇÑ´Ù 
-//	@Transactional
-//	@Modifying
-//	@Query("select id,title,location,period,thumb,category,genre from content_info con where con.genre like '%:genre%' and con.category=:category ")
-//	List<ContentInfo> selectcontent(@Param("genre") String genre,@Param("category") String category);
 
 	List<ContentInfo> findAllByGenreContainingAndCategory(String genre, String category);
 }
