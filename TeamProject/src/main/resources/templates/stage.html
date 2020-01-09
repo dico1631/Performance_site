@@ -84,7 +84,7 @@ body {
                <div class="carousel-caption d-none d-md-block">
                   <h2 style = font-weight:bold;>이달의 연극</h2>
                   <h4 style = font-weight:1000;>엘리펀트 송</h4>
-                  <button type="button" onclick="window.open('https://ticket.interpark.com/Ticket/Goods/GoodsInfo.asp?GoodsCode=19015278')" style = font-weight:bold;>공연정보 보러가기</button>
+                  <button type="button" onclick="window.open('http://ticket.interpark.com/search/ticket.asp?search=엘리펀트 송')" style = font-weight:bold;>공연정보 보러가기</button>
                </div>
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
@@ -93,16 +93,16 @@ body {
                <div class="carousel-caption d-none d-md-block">
                   <h2 style = font-weight:bold;>이달의 뮤지컬</h2>
                   <h4 style = font-weight:1000;>아이다</h4>
-                  <p>공연정보 보러가기</p>
+                  <button type="button" onclick="window.open('http://ticket.interpark.com/search/ticket.asp?search=아이다')" style = font-weight:bold;>공연정보 보러가기</button>
                </div>
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item"
-               style="background-image: url('https://file.mk.co.kr/meet/neds/2019/05/image_readtop_2019_322357_15579865093751530.jpg')">
+               style="background-image: url('http://ticketimage.interpark.com/Play/image/large/19/19013796_p.gif')">
                <div class="carousel-caption d-none d-md-block">
-                  <h2 style = font-weight:bold;>추천 공연(랜덤 - 판매율순위)</h2>
-                    <h4 style = font-weight:1000;>퀸 내한공연</h4>
-                    <p>공연정보 보러가기</p>
+                  <h2 style = font-weight:bold;>이달의 뮤지컬</h2>
+                    <h4 style = font-weight:1000;>레베카</h4>
+                    <button type="button" onclick="window.open('http://ticket.interpark.com/search/ticket.asp?search=레베카')" style = font-weight:bold;>공연정보 보러가기</button>
                </div>
             </div>
 
@@ -205,20 +205,17 @@ function goPage(genre){
 }
 </script>
 <script>openCity(event, 'tabs','')</script>
-<script>openCity(event, 'tabs','')</script>
+
 <script>
 	$(".mylist").click(function() {
-		alert("찜했습니다.");
 		var idx = $(this).index(".mylist");
 		console.log(idx);
-		$('form').eq(idx).submit();
  		
 		$.ajax({
 			url: 'test',
 			type: 'post',
 			data: $('form').eq(idx).serialize(),
 			success: function(result) {
-				
 				if(result == 1) {
 					// 찜하기 진행
 					alert('찜 했습니다!');
@@ -229,7 +226,9 @@ function goPage(genre){
 			}
 		})
 		return false;
+	});
 </script>
+
 <form id="gofrm" method="get" action="/stage">
 <input type="hidden" id="genre" name="genre" value=""/>
 <input type="hidden" id="category" name="category" value=""/>
