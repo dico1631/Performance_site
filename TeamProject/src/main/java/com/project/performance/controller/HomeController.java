@@ -75,7 +75,7 @@ public class HomeController {
 		if(genre==null || genre.equals("")) genre = "";
 		List<ContentInfo> list = contentRepository.findAllByGenreContainingAndCategory(genre, category);
 		System.out.println(list);
-		
+		if(genre==null || genre.equals("")) genre = "전체";
 		// list, category, genre 전달 
 		model.addAttribute("list" , list);
 		model.addAttribute("category" , category);
