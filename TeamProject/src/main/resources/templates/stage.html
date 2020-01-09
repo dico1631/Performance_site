@@ -117,17 +117,17 @@ body {
 	<!-- Page Content -->
 	<div class="container">
 
-		<h1 class="my-4">내게 맞는 공연정보</h1>
+		<h1 class="my-4">[[${category}]] 공연정보([[${genre}]])</h1>
 		<!-- 탭 들어갈 자리 : 네이버에서 가져오기-->
 		<div class="tab">
-			<button class="tablinks active" onclick="openCity(event, 'tabs')">전체</button>
-			<button class="tablinks" onclick="openCity(event, 'tabs')">로맨스</button>
-			<button class="tablinks" onclick="openCity(event, 'tabs')">코미디</button>
-			<button class="tablinks" onclick="openCity(event, 'tabs')">공포</button>
-			<button class="tablinks" onclick="openCity(event, 'tabs')">드라마</button>
-			<button class="tablinks" onclick="openCity(event, 'tabs')">판타지</button>
-			<button class="tablinks" onclick="openCity(event, 'tabs')">시대/역사</button>
-			<button class="tablinks" onclick="openCity(event, 'tabs')">추리스릴러</button>
+			<button class="tablinks active" onclick="openCity(event, 'tabs','')">전체</button>
+			<button class="tablinks" onclick="openCity(event, 'tabs','로맨스')">로맨스</button>
+			<button class="tablinks" onclick="openCity(event, 'tabs','코미디')">코미디</button>
+			<button class="tablinks" onclick="openCity(event, 'tabs','공포')">공포</button>
+			<button class="tablinks" onclick="openCity(event, 'tabs','드라마')">드라마</button>
+			<button class="tablinks" onclick="openCity(event, 'tabs','판타지')">판타지</button>
+			<button class="tablinks" onclick="openCity(event, 'tabs','시대/역사')">시대/역사</button>
+			<button class="tablinks" onclick="openCity(event, 'tabs','추리스릴러')">추리스릴러</button>
 		</div>
 
 
@@ -167,7 +167,7 @@ body {
 
 </body>
 <script>
-function openCity(evt, cityName) {
+function openCity(evt, cityName, genre) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -179,8 +179,20 @@ function openCity(evt, cityName) {
   }
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
+  
+  goPage(genre);
+  
+}
+
+function goPage(genre){
+	document.getElementById('genre').value = genre;
+	document.getElementById('category').value = '[[${category}]]';
+	document.getElementById('gofrm').submit();
 }
 </script>
-
-<script>openCity(event, 'tabs')</script>
+<script>openCity(event, 'tabs','')</script>
+<form id="gofrm" method="get" action="/stage">
+<input type="hidden" id="genre" name="genre" value=""/>
+<input type="hidden" id="category" name="category" value=""/>
+</form>
 </html>

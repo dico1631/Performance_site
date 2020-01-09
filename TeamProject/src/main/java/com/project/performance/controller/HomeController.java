@@ -3,7 +3,9 @@ package com.project.performance.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.performance.model.ContentInfo;
 import com.project.performance.model.User;
@@ -62,23 +65,30 @@ public class HomeController {
 		return "redirect:/main";
 	}
 
-//	@RequestMapping¿¡¼­ º¯°æ 
 	@GetMapping("/stage")
-	public String stage(Model model) throws IOException {
-//		List<ContentInfo> list = contentRepository.selectcontent("", "¿¬±Ø");
-		List<ContentInfo> list = contentRepository.findAllByGenreContainingAndCategory("", "¿¬±Ø");
+	public String stage(HttpServletRequest req , Model model) throws IOException {
+	
+		String genre = req.getParameter("genre");
+		String category = req.getParameter("category");
+		List<ContentInfo> list = contentRepository.findAllByGenreContainingAndCategory(genre, category);
 		System.out.println(list);
-		model.addAttribute("list", list);
+		
+		// list, category, genre Àü´Þ 
+		model.addAttribute("list" , list);
+		model.addAttribute("category" , category);
+		model.addAttribute("genre" , genre==""||genre==null?"ÀüÃ¼":genre);
+		
 		return "stage";
 	}
-
-	@RequestMapping("/musical")
-	public String main(Model model) {
-		List<ContentInfo> list2 = contentRepository.findAllByGenreContainingAndCategory("", "¹ÂÁöÄÃ");
-		System.out.println(list2);
-		model.addAttribute("list2", list2);
-		return "musical";
-	}
+	
+	//¹ÂÁöÄÃ.html »èÁ¦ 
+//	@RequestMapping("/musical")
+//	public String main(Model model) {
+//		List<ContentInfo> list2 = contentRepository.findAllByGenreContainingAndCategory("", "¹ÂÁöÄÃ");
+//		System.out.println(list2);
+//		model.addAttribute("list2", list2);
+//		return "musical";
+//	}
 
 	@RequestMapping("/map")
 	public String map() {
