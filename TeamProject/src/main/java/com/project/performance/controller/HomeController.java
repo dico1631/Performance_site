@@ -62,7 +62,7 @@ public class HomeController {
 	@GetMapping("/signout")
 	public String signout() {
 		session.invalidate();
-		return "redirect:/main";
+		return "redirect:/stage";
 	}
 
 	@GetMapping("/stage")
@@ -70,13 +70,15 @@ public class HomeController {
 	
 		String genre = req.getParameter("genre");
 		String category = req.getParameter("category");
+		if(category==null || category.equals("")) category = "연극";
+		if(genre==null || genre.equals("")) genre = "";
 		List<ContentInfo> list = contentRepository.findAllByGenreContainingAndCategory(genre, category);
 		System.out.println(list);
 		
 		// list, category, genre 전달 
 		model.addAttribute("list" , list);
 		model.addAttribute("category" , category);
-		model.addAttribute("genre" , genre==""||genre==null?"전체":genre);
+		model.addAttribute("genre" , genre);
 		
 		return "stage";
 	}
