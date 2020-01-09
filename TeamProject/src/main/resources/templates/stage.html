@@ -145,7 +145,17 @@ body {
 					<div class="card-body">
 						<h4 class="card-title">
 							<!-- 클릭 시 상세페이지 이동 -->
-							<a th:href="@{/detail(title=${con.title},period=${con.period},location=${con.location},category=${con.category},thumb=${con.thumb})}">[[${con.title}]]</a> <a href="#" class="btn btn-primary">찜하기</a>
+							<a th:href="@{/detail(title=${con.title},period=${con.period},location=${con.location},category=${con.category},thumb=${con.thumb})}">[[${con.title}]]</a>
+							<a href="#" class="mylist btn btn-primary button">찜하기</a>
+							<form>
+								<input class="pick" type="hidden" name="contentid" th:value="${con.id}">
+								<input class="pick" type="hidden" name="title" th:value="${con.title}">
+								<input class="pick" type="hidden" name="location" th:value="${con.location}">
+								<input class="pick" type="hidden" name="period" th:value="${con.period}">
+								<input class="pick" type="hidden" name="thumb" th:value="${con.thumb}">
+								<input class="pick" type="hidden" name="category" th:value="${con.category}">
+								<input class="pick" type="hidden" name="genre" th:value="${con.genre}">
+							</form>
 						</h4>
 						<p class="card-text">[[${con.period}]]</p>
 					</div>
@@ -191,6 +201,24 @@ function goPage(genre){
 }
 </script>
 <script>openCity(event, 'tabs','')</script>
+<script>
+	$(".mylist").click(function() {
+		alert("찜했습니다.");
+		var idx = $(this).index(".mylist");
+		console.log(idx);
+		$('form').eq(idx).submit();
+ 		
+		$.ajax({
+			url: 'test',
+			type: 'post',
+			data: $('form').eq(idx).serialize(),
+			success: function(result) {
+				
+			}
+		})
+		return false;
+	});
+</script>
 <form id="gofrm" method="get" action="/stage">
 <input type="hidden" id="genre" name="genre" value=""/>
 <input type="hidden" id="category" name="category" value=""/>

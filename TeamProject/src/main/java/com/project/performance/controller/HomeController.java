@@ -3,7 +3,6 @@ package com.project.performance.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,11 +15,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.performance.model.ContentInfo;
+import com.project.performance.model.Scrap;
 import com.project.performance.model.User;
 import com.project.performance.repository.ContentRepository;
+import com.project.performance.repository.ScrapRepository;
 import com.project.performance.repository.UserRepository;
 
 @Controller
@@ -145,5 +145,26 @@ public class HomeController {
 	@RequestMapping("/error404")
 	public String error404() {
 		return "error404";
+	}
+	
+	@Autowired
+	ScrapRepository scrapRepository;
+	
+	@PostMapping("/test")
+	public String testPost(@ModelAttribute Scrap scrap, HttpSession session) {
+		User user = (User) session.getAttribute("user_info");
+		String email = user.getEmail();
+		scrap.setEmail(email);
+		scrapRepository.save(scrap);
+		return "redirect:/stage";
+	}
+	
+	@GetMapping("/mylist")
+	public String mylist(Model model, HttpSession session) throws IOException {
+		User user = (User) session.getAttribute("user_info");
+		String email = user.getEmail();
+		List<Scrap> scraplist = scrapRepository.findAllByEmail(email);
+		model.addAttribute("list", scraplist);
+		return "scrap";
 	}
 }

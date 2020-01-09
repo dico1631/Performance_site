@@ -10,10 +10,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-          	<a class="nav-link" href="/stage">연극</a>
+          	<a class="nav-link" href="http://localhost:8080/stage?category=연극&genre=">연극</a>
           </li>
           <li class="nav-item">
-          	<a class="nav-link" href="/musical">뮤지컬</a>
+          	<a class="nav-link" href="http://localhost:8080/stage?category=뮤지컬&genre=">뮤지컬</a>
           </li>
           <li th:if="${session.user_info} == null">
          <a class="nav-link" href="/login">로그인</a>
@@ -23,8 +23,7 @@
                [[${session.user_info.email} + '님 회원정보']]
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="portfolio-1-col.html">내정보 보기</a>
-              <a class="dropdown-item" href="portfolio-2-col.html">찜한공연</a>
+              <a class="dropdown-item" href="/mylist">찜한공연</a>
               <a class="dropdown-item" href="/signout">로그아웃</a>
             </div>
           </li>
